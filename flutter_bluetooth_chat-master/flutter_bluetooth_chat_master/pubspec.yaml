@@ -1,0 +1,28 @@
+name: flutter_bluetooth_chat
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.5 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  all_bluetooth: ^0.1.0
+  permission_handler: ^11.2.0
+  flutter_chat_bubble: ^2.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
