@@ -36,9 +36,7 @@ flutter:
   uses-material-design: true
   assets:
     - lib/image/
-    - assets/berlin.map
     - assets/vietnam.map
-    - assets/indoorUB-ext.map
     - assets/render_themes/
     - assets/icons/
     - packages/mapsforge_flutter/assets/patterns/dark_farmland.svg

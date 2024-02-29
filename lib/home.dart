@@ -108,12 +108,19 @@ class Home extends StatelessWidget {
                 ),
                 padding: EdgeInsets.all(50), // button size
               ),
+// ... (existing code)
+
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MapScreen(title: 'Vietnam Offline Map',)),
+                  MaterialPageRoute(
+                    builder: (context) => MapScreen(
+                      title: 'Vietnam Offline Map',
+                    ),
+                  ),
                 );
               },
+
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[

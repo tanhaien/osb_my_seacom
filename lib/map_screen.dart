@@ -5,8 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:mapsforge_flutter/core.dart';
 import 'package:mapsforge_flutter/maps.dart';
 import 'package:mapsforge_flutter/marker.dart';
-import 'package:logging/logging.dart';
+import 'package:provider/provider.dart';
 
+import 'map_data_provider.dart';
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key, required this.title});
 
@@ -27,11 +28,36 @@ class _MapScreenState extends State<MapScreen> {
   // Bonus: A markerstore
   final MarkerDataStore markerDataStore = MarkerDataStore();
 
+  // Future<MapModel> _createMapModel() async {
+  //   // Load the mapfile which holds the openstreetmap® data. Use either MapFile.from() or load it into memory first (small files only) and use MapFile.using()
+  //   ByteData content = await rootBundle.load('assets/vietnam.map');
+  //   final mapFile =
+  //   await MapFile.using(content.buffer.asUint8List(), null, null);
+  //
+  //   // Create the render theme which specifies how to render the informations
+  //   // from the mapfile.
+  //   final renderTheme = await RenderThemeBuilder.create(
+  //     displayModel,
+  //     'assets/render_themes/defaultrender.xml',
+  //   );
+  //   // Create the Renderer
+  //   final jobRenderer =
+  //   MapDataStoreRenderer(mapFile, renderTheme, symbolCache, true);
+  //
+  //   // Glue everything together into two models, the mapModel here and the viewModel below.
+  //   MapModel mapModel = MapModel(
+  //     displayModel: displayModel,
+  //     renderer: jobRenderer,
+  //   );
+  //
+  //   // Bonus: Add MarkerDataStore to hold added markers
+  //   mapModel.markerDataStores.add(markerDataStore);
+  //   return mapModel;
+  // }
+
   Future<MapModel> _createMapModel() async {
-    // Load the mapfile which holds the openstreetmap® data. Use either MapFile.from() or load it into memory first (small files only) and use MapFile.using()
-    ByteData content = await rootBundle.load('assets/vietnam.map');
-    final mapFile =
-    await MapFile.using(content.buffer.asUint8List(), null, null);
+    final mapData = Provider.of<MapDataProvider>(context).mapData!;
+    final mapFile = await MapFile.using(mapData, null, null);
 
     // Create the render theme which specifies how to render the informations
     // from the mapfile.
@@ -44,7 +70,7 @@ class _MapScreenState extends State<MapScreen> {
     MapDataStoreRenderer(mapFile, renderTheme, symbolCache, true);
 
     // Glue everything together into two models, the mapModel here and the viewModel below.
-    MapModel mapModel = MapModel(
+    final mapModel = MapModel(
       displayModel: displayModel,
       renderer: jobRenderer,
     );
@@ -53,6 +79,7 @@ class _MapScreenState extends State<MapScreen> {
     mapModel.markerDataStores.add(markerDataStore);
     return mapModel;
   }
+
 
   Future<ViewModel> _createViewModel() async {
     ViewModel viewModel = ViewModel(displayModel: displayModel);
@@ -73,10 +100,10 @@ class _MapScreenState extends State<MapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Simplified example")),
+      appBar: AppBar(title: Image.asset('lib/image/logoseacom_resized.jpg')),
       body: MapviewWidget(
         displayModel: displayModel,
-        createMapModel: _createMapModel,
+        createMapModel:_createMapModel,
         createViewModel: _createViewModel,
       ),
     );
