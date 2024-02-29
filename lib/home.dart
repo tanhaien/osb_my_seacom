@@ -109,7 +109,10 @@ class Home extends StatelessWidget {
                 padding: EdgeInsets.all(50), // button size
               ),
               onPressed: () {
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MapScreen(title: 'Vietnam Offline Map',)),
+                );
               },
               child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -144,46 +147,3 @@ class Home extends StatelessWidget {
     );
   }
 }
-
-//
-// class Home extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Center(child: Image.asset('lib/image/logoseacom_resized.jpg')),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             ElevatedButton.icon(
-//               icon: Icon(Icons.lock_open, color: Colors.orange,),
-//               label: Text('Login', style: TextStyle(color: Colors.orange)),
-//               onPressed: () {
-//                 // Add your functionality for Button 1 here
-//               },
-//             ),
-//             ElevatedButton.icon(
-//               icon: Icon(Icons.settings, color: Colors.orange,),
-//               label: Text('Settings', style: TextStyle(color: Colors.orange),),
-//               onPressed: () {
-//                 // Add your functionality for Button 2 here
-//               },
-//             ),
-//             ElevatedButton.icon(
-//               icon: Icon(Icons.messenger, color: Colors.orange,),
-//               label: Text('Messages', style: TextStyle(color: Colors.orange)),
-//               onPressed: () {
-//                 Navigator.push(
-//                   context,
-//                   MaterialPageRoute(builder: (context) => HomeScreen()),
-//                 );
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
