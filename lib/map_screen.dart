@@ -59,7 +59,7 @@ class _MapScreenState extends State<MapScreen> {
     // set the initial position
     viewModel.setMapViewPosition(15.882388, 107.815054);
     // set the initial zoomlevel
-    viewModel.setZoomLevel(5);
+    viewModel.setZoomLevel(6);
     // bonus feature: listen for long taps and add/remove a marker at the tap-positon
     viewModel.addOverlay(_MarkerOverlay(
       viewModel: viewModel,
